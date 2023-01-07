@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 
-from dogs.views import index, categories, pageNotFound, archive
+# from dogs.views import index, categories, pageNotFound, archive
 from django.urls import path, include
 
 urlpatterns = [
@@ -24,4 +24,4 @@ urlpatterns = [
     path('', include('dogs.urls')),
 ]
 
-handler404 = pageNotFound
+# handler404 = pageNotFound
