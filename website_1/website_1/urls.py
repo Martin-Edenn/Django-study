@@ -1,7 +1,7 @@
-"""website_1 URL Configuration
+"""coolsite URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
+    https://docs.djangoproject.com/en/3.1/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -13,10 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path
 
-# from dogs.views import index, categories, pageNotFound, archive
+from website_1 import settings
+from dogs.views import *
 from django.urls import path, include
 
 urlpatterns = [
@@ -24,4 +26,7 @@ urlpatterns = [
     path('', include('dogs.urls')),
 ]
 
-# handler404 = pageNotFound
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = pageNotFound
