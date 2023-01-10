@@ -56,11 +56,13 @@ def show_post(request, post_id):
     return render(request, 'dogs/post.html', context=context)
 
 
-def show_category(request, cat_id):
+def show_category(request, cat_slug):
+    cat = get_object_or_404(Category, slug=cat_slug)
+    cat_id = cat.pk
     posts = Dogs.objects.filter(cat_id=cat_id)
 
-    if len(posts) == 0:
-        raise Http404()
+    # if len(cat) == 0:
+    #     raise Http404()
 
     context = {
         'posts': posts,
